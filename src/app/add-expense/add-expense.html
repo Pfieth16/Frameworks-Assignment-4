@@ -1,1 +1,22 @@
-<p>add-expense works!</p>
+<form action="">
+    <div class="mb-3">
+        <label for="inputName">Expense Title</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Enter the name of the expense" [(ngModel)] = expense_title>
+    </div>
+    <div class="mb-3">
+        <label for="inputAmt">Expense Amount</label>
+        <input type="number" class="form-control" id="inputAmt" [(ngModel)] = expense_amount>
+    </div>
+    <div class="mb-3">
+        <label for="inputCategory">Expense Category</label>
+        <select class="form-select" id="inputCategory" [(ngModel)] = expense_category>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Grocery">Grocery</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Travel">Travel</option>
+            <option value="Food">Food</option>
+        </select>
+    </div>
+</form>

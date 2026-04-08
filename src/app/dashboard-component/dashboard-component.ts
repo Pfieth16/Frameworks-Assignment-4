@@ -1,8 +1,9 @@
 import { Component, signal, computed } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-component',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './dashboard-component.html',
   styleUrl: './dashboard-component.css',
 })
