@@ -5,5 +5,5 @@ export interface Expense {
     category: ExpenseCategory
 }
 
-type ExpenseCategory = { "Work": string, "Personal": string, "Grocery": string, "Utilities": string, "Shopping": string, "Travel": string, "Food": string }
+export type ExpenseCategory = "Work" | "Personal" | "Grocery" | "Utilities" | "Shopping" | "Travel" | "Food";
 

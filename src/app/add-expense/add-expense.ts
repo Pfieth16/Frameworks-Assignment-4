@@ -1,6 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { DashboardComponent } from '../dashboard-component/dashboard-component';
+import { Expense, ExpenseCategory } from '../expense';
+import { ExpenseService } from '../expense-service';
 //import { DataService } from '../data.service';
 
 @Component({
@@ -10,10 +13,28 @@ import { RouterLink } from '@angular/router';
   styleUrl: './add-expense.css',
 })
 export class AddExpense {
-  //dataService = inject(DataService);
+  expenseService = inject(ExpenseService);
+  //showWarning = signal<boolean>(false); //Validation?
+
+  onCreateExpense(expName: HTMLInputElement, expAmt: HTMLInputElement, expCat: HTMLSelectElement) {
+    const name = expName.value;
+    const amt = ((expAmt.value as unknown) as number);
+    const cat = ((expCat.value as unknown) as ExpenseCategory);
+    // const cat = expCat as ExpenseCategory;
+
+    //Validation?
+
+    this.expenseService.addExpense(name, amt, cat)
+
+    expName.value = '';
+    expAmt.value = '0';
+    expCat.value = '';
+    // expCat = 'Work';
+  }
 
   expense_title: string = ''
   expense_amount: number = 0
   expense_category: string = ''
+
 
 }

@@ -12,9 +12,12 @@
   </div>
 </div> -->
 
-<nav>
-  <button routerLink="">Dashboard</button>
-  <button routerLink="add">Add Expense</button>
+<nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+  <form class="container-fluid justify-content-start">
+    <button routerLink="" class="btn btn-outline-info me-2" type="button">Dashboard</button>
+    <button routerLink="add" class="btn btn-outline-info me-2" type="button">Add Expense</button>
+    <button routerLink="expenses" class="btn btn-outline-info me-2" type="button">View Expenses</button>
+  </form>
 </nav>
 
 <router-outlet/>

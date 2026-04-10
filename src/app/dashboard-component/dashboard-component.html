@@ -1,1 +1,25 @@
-<p>dashboard-component works!</p>
+<h1>Dashboard</h1>
+<div class="card border-primary mb-3" style="max-width: 40rem;">
+  <div class="card-body text-primary">
+    <h5 class="card-title">Total Expenses</h5>
+    <h3 class="card-text">${{expenseService.sum(expenseService.expense_list())}}</h3>
+  </div>
+</div>
+<div class="card border-primary mb-3" style="max-width: 40rem;">
+  <div class="card-body text-primary">
+    <h5 class="card-title">Expense Count</h5>
+    <h3 class="card-text">{{expenseService.num_expenses()}}</h3>
+  </div>
+</div>
+<div class="card border-primary mb-3" style="max-width: 40rem;">
+  <div class="card-body text-primary">
+    <h5 class="card-title">Highest Expense</h5>
+    <h3 class="card-text">${{expenseService.max_expense()}}</h3>
+  </div>
+</div>
+<div class="card border-primary mb-3" style="max-width: 40rem;">
+  <div class="card-body text-primary">
+    <h5 class="card-title">Average Expense</h5>
+    <h3 class="card-text">${{expenseService.avg_expense()}}</h3>
+  </div>
+</div>

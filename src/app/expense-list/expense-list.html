@@ -1,1 +1,6 @@
-<p>expense-list works!</p>
+<h1>Expenses</h1>
+<div class="container">
+    @for (expense of expenseService.expense_list(); track $index) {
+        <app-expense-item [expense]="expense"></app-expense-item>
+    }
+</div>
