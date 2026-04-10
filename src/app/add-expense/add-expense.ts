@@ -20,7 +20,6 @@ export class AddExpense {
     const name = expName.value;
     const amt = ((expAmt.value as unknown) as number);
     const cat = ((expCat.value as unknown) as ExpenseCategory);
-    // const cat = expCat as ExpenseCategory;
 
     //Validation?
 
@@ -29,12 +28,11 @@ export class AddExpense {
     expName.value = '';
     expAmt.value = '0';
     expCat.value = '';
-    // expCat = 'Work';
   }
 
-  expense_title: string = ''
-  expense_amount: number = 0
-  expense_category: string = ''
+  // expense_title: string = ''
+  // expense_amount: number = 0
+  // expense_category: string = ''
 
 
 }

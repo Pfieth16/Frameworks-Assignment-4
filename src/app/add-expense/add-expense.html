@@ -1,15 +1,18 @@
 <form action="">
     <div class="mb-3">
         <label for="inputName">Expense Title</label>
-        <input #expenseName type="text" class="form-control" id="inputName" placeholder="Enter the name of the expense" [(ngModel)] = expense_title>
+        <!-- <input #expenseName type="text" class="form-control" id="inputName" placeholder="Enter the name of the expense" [(ngModel)] = expense_title> -->
+        <input #expenseName type="text" class="form-control" id="inputName" placeholder="Enter the name of the expense">
     </div>
     <div class="mb-3">
         <label for="inputAmt">Expense Amount</label>
-        <input #expenseAmount type="number" class="form-control" id="inputAmt" [(ngModel)] = expense_amount>
+        <!-- <input #expenseAmount type="number" class="form-control" id="inputAmt" [(ngModel)] = expense_amount> -->
+        <input #expenseAmount type="number" class="form-control" id="inputAmt">
     </div>
     <div class="mb-3">
         <label for="inputCategory">Expense Category</label>
-        <select #expenseCategory class="form-select" id="inputCategory" [(ngModel)] = expense_category>
+        <!-- <select #expenseCategory class="form-select" id="inputCategory" [(ngModel)] = expense_category> -->
+        <select #expenseCategory class="form-select" id="inputCategory">
             <option value="Work">Work</option>
             <option value="Personal">Personal</option>
             <option value="Grocery">Grocery</option>

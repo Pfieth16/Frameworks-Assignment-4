@@ -1,8 +1,15 @@
 <h1>Dashboard</h1>
+<div class="card border-danger mb-3" style="max-width: 40rem;">
+  <div class="card-body text-danger">
+    <h5 class="card-title">Debug</h5>
+    <h3 class="card-text">Sum Type: {{typeof expenseService.sum(expenseService.expense_list())}}</h3>
+    <h3 class="card-text">Max Type: {{typeof expenseService.max(expenseService.expense_list())}}</h3>
+  </div>
+</div>
 <div class="card border-primary mb-3" style="max-width: 40rem;">
   <div class="card-body text-primary">
     <h5 class="card-title">Total Expenses</h5>
-    <h3 class="card-text">${{expenseService.sum(expenseService.expense_list())}}</h3>
+    <h3 class="card-text">${{(expenseService.sum(expenseService.expense_list()))}}</h3>
   </div>
 </div>
 <div class="card border-primary mb-3" style="max-width: 40rem;">

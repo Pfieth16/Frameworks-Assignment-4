@@ -9,7 +9,7 @@ export class ExpenseService {
   expense_list = signal<Expense[]>([]);
   num_expenses = computed(() => this.expense_list().length);
   max_expense = computed(() => this.max(this.expense_list()));
-  avg_expense = computed(() => this.sum(this.expense_list()) / this.expense_list.length);
+  avg_expense = computed(() => this.avg(this.expense_list()));
 
   max(list: Expense[]) {
     var max_val = list[0].amount;
@@ -20,9 +20,19 @@ export class ExpenseService {
   }
 
   sum(list: Expense[]) {
-    var sum = 0;
-    list.forEach((elem, idx) => { sum += elem.amount; })
+    var sum: number = 0;
+    list.forEach((elem, idx) => {
+      const amt: number = elem.amount as number;
+      sum = +sum + +amt;
+    })
     return sum;
+  }
+
+  avg(list: Expense[]) {
+    var sum: number = this.sum(list);
+    const len: number = list.length;
+    const toReturn: number = sum / len;
+    return toReturn;
   }
 
   addExpense(name: string, amt: number, category: ExpenseCategory) {
