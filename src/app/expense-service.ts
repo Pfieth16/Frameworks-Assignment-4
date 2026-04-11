@@ -21,10 +21,7 @@ export class ExpenseService {
 
   sum(list: Expense[]) {
     var sum: number = 0;
-    list.forEach((elem, idx) => {
-      const amt: number = elem.amount as number;
-      sum = +sum + +amt;
-    })
+    list.forEach((elem) => { sum += +elem.amount; })
     return sum;
   }
 

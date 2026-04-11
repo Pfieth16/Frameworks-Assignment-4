@@ -1,10 +1,8 @@
 <div class="card text-bg-dark mb-3" style="max-width: 90rem;">
   <div class="card-body">
-    <h4 class="card-title">{{expense().title}} <span class="badge text-bg-warning">{{expense().category}}</span></h4>
+    <h4 class="card-title">{{expense().title}} <span class="badge text-bg-warning" [class]="badgeClass()">{{expense().category}}</span></h4>
     <h5>${{expense().amount}}</h5> 
     <button routerLink="edit" class="btn btn-primary Disabled">Edit</button>
     <button class="btn btn-danger" (click)="onDeleteExpense()">Delete</button>
   </div>
 </div>
-<!-- Add databinding when implemented in backend 
-    (Disabled for testing) -->

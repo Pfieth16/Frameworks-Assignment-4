@@ -26,8 +26,8 @@ export class AddExpense {
     this.expenseService.addExpense(name, amt, cat)
 
     expName.value = '';
-    expAmt.value = '0';
-    expCat.value = '';
+    expAmt.value = '';
+    expCat.value = 'Work';
   }
 
   // expense_title: string = ''
