@@ -2,7 +2,7 @@
   <div class="card-body">
     <h4 class="card-title">{{expense().title}} <span class="badge text-bg-warning" [class]="badgeClass()">{{expense().category}}</span></h4>
     <h5>${{expense().amount}}</h5> 
-    <button routerLink="edit" class="btn btn-primary Disabled">Edit</button>
+    <a [routerLink]="['edit', expense().id]" class="btn btn-primary">Edit</a>
     <button class="btn btn-danger" (click)="onDeleteExpense()">Delete</button>
   </div>
 </div>

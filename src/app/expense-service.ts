@@ -43,11 +43,16 @@ export class ExpenseService {
     this.expense_list.update((expenses) => [...expenses, newExpense]);
   }
 
+  updateExpense(id: string, name: string, amt: number, category: ExpenseCategory) {
+    this.deleteExpense(id);
+    this.addExpense(name, amt, category);
+  }
+
   deleteExpense(id: string) {
     this.expense_list.update((expenses) => expenses.filter((expense) => expense.id != id));
   }
 
   private generateExpenseId = () => {
-    return 'expense-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+    return 'expense_' + Date.now() + "_" + Math.floor(Math.random() * 1000);
   };
 }

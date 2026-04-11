@@ -21,7 +21,7 @@ export const routes: Routes = [
         title: 'Expenses',
     },
     {
-        path: 'edit',
+        path: 'edit/:id',
         component: EditExpense,
         title: 'Edit Expense',
     },

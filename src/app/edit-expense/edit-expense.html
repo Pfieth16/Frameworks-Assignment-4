@@ -1,1 +1,25 @@
-<p>edit-expense works!</p>
+<div class="container">
+    <form action="">
+        <div class="mb-3">
+            <label for="inputName">Expense Title</label>
+            <input #expenseName type="text" class="form-control" id="inputName" placeholder="Enter the name of the expense">
+        </div>
+        <div class="mb-3">
+            <label for="inputAmt">Expense Amount</label>
+            <input #expenseAmount type="number" class="form-control" id="inputAmt">
+        </div>
+        <div class="mb-3">
+            <label for="inputCategory">Expense Category</label>
+            <select #expenseCategory class="form-select" id="inputCategory">
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Grocery">Grocery</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Travel">Travel</option>
+                <option value="Food">Food</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" (click)="onUpdateExpense(expenseName, expenseAmount, expenseCategory)">Confirm Edits</button>
+    </form>
+</div>
