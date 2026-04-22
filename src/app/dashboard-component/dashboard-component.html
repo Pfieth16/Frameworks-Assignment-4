@@ -1,31 +1,61 @@
 <div class="container">
-    <h1>Dashboard</h1>
-    <div class="row">
-        <div class="card border-primary mb-3 col" style="max-width: 40rem;">
-            <div class="card-body text-primary">
-                <h5 class="card-title">Total Expenses</h5>
-                <h3 class="card-text">${{(expenseService.sum(expenseService.expense_list()))}}</h3>
-            </div>
-        </div>
-        <div class="card border-primary mb-3 col" style="max-width: 40rem;">
-            <div class="card-body text-primary">
-                <h5 class="card-title">Expense Count</h5>
-                <h3 class="card-text">{{expenseService.num_expenses()}}</h3>
-            </div>
-        </div>
+  <h1>Dashboard</h1>
+  <div class="row">
+    <div class="card border-primary mb-3 col" style="max-width: 40rem">
+      <div class="card-body text-primary">
+        <h5 class="card-title">Total Expenses</h5>
+        <h3 class="card-text">${{ expenseService.sum(expenseService.expense_list()) }}</h3>
+      </div>
     </div>
-    <div class="row">
-        <div class="card border-primary mb-3 col" style="max-width: 40rem;">
-            <div class="card-body text-primary">
-                <h5 class="card-title">Highest Expense</h5>
-                <h3 class="card-text">${{expenseService.max_expense()}}</h3>
-            </div>
-        </div>
-        <div class="card border-primary mb-3 col" style="max-width: 40rem;">
-            <div class="card-body text-primary">
-                <h5 class="card-title">Average Expense</h5>
-                <h3 class="card-text">${{expenseService.avg_expense()}}</h3>
-            </div>
-        </div>
+    <div class="card border-primary mb-3 col" style="max-width: 40rem">
+      <div class="card-body text-primary">
+        <h5 class="card-title">Expense Count</h5>
+        <h3 class="card-text">{{ expenseService.num_expenses() }}</h3>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="card border-primary mb-3 col" style="max-width: 40rem">
+      <div class="card-body text-primary">
+        <h5 class="card-title">Highest Expense</h5>
+        <h3 class="card-text">${{ expenseService.max_expense() }}</h3>
+      </div>
+    </div>
+    <div class="card border-primary mb-3 col" style="max-width: 40rem">
+      <div class="card-body text-primary">
+        <h5 class="card-title">Average Expense</h5>
+        <h3 class="card-text">${{ expenseService.avg_expense() }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card border-primary mb-3 col-12 col-lg-6" style="max-width: 40rem">
+      <div class="card-body text-primary">
+        <h5 class="card-title">Expense Categories Distribution</h5>
+        <p *ngIf="pieChartData().labels.length === 0">No expenses to display</p>
+        <canvas
+          *ngIf="pieChartData().labels.length > 0"
+          baseChart
+          [data]="pieChartData()"
+          [type]="'pie'"
+          style="max-height: 400px"
+        ></canvas>
+      </div>
+    </div>
+    <div class="card border-primary mb-3 col-12 col-lg-6" style="max-width: 40rem">
+      <div class="card-body text-primary">
+        <h5 class="card-title">Income vs Expense Count</h5>
+        <p *ngIf="expenseTypeChartData().datasets[0].data.every((count) => count === 0)">
+          No expenses to display
+        </p>
+        <canvas
+          *ngIf="!expenseTypeChartData().datasets[0].data.every((count) => count === 0)"
+          baseChart
+          [data]="expenseTypeChartData()"
+          [type]="'bar'"
+          style="max-height: 400px"
+        ></canvas>
+      </div>
+    </div>
+  </div>
 </div>

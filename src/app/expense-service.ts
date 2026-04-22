@@ -15,6 +15,30 @@ export class ExpenseService {
   num_expenses = computed(() => this.expense_list().length);
   max_expense = computed(() => this.max(this.expense_list()));
   avg_expense = computed(() => this.avg(this.expense_list()));
+  category_totals = computed(() => {
+    const totals: Record<string, { total: number; color: string }> = {};
+    const categoryColorMap = this.categories().reduce(
+      (map, category) => {
+        map[category.name] = category.color;
+        return map;
+      },
+      {} as Record<string, string>,
+    );
+
+    this.expense_list().forEach((exp) => {
+      const cat = exp.category;
+      if (!totals[cat]) {
+        totals[cat] = { total: 0, color: categoryColorMap[cat] || 'secondary' };
+      }
+      totals[cat].total += Math.abs(exp.amount);
+    });
+
+    return Object.entries(totals).map(([name, value]) => ({
+      name,
+      total: value.total,
+      color: value.color,
+    }));
+  });
 
   constructor() {
     // Listen to real-time updates from Firestore
