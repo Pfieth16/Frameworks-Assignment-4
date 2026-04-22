@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="expense(); else noExpense">
   <form action="">
     <div class="mb-3">
       <label for="inputName">Expense Title</label>
@@ -7,25 +7,50 @@
         type="text"
         class="form-control"
         id="inputName"
+        [value]="expense()?.title"
         placeholder="Enter the name of the expense"
       />
     </div>
     <div class="mb-3">
       <label for="inputAmt">Expense Amount</label>
-      <input #expenseAmount type="number" class="form-control" id="inputAmt" />
+      <input
+        #expenseAmount
+        type="number"
+        class="form-control"
+        id="inputAmt"
+        [value]="expense()?.amount"
+        min="0"
+        step="0.01"
+      />
     </div>
     <div class="mb-3">
       <label for="inputCategory">Expense Category</label>
       <select #expenseCategory class="form-select" id="inputCategory">
         <option value="">Select a category</option>
-        <option *ngFor="let cat of categories()" [value]="cat.name">{{ cat.name }}</option>
+        <option
+          *ngFor="let cat of categories()"
+          [value]="cat.name"
+          [selected]="cat.name === expense()?.category"
+        >
+          {{ cat.name }}
+        </option>
       </select>
     </div>
-    <button
-      class="btn btn-primary"
-      (click)="onUpdateExpense(expenseName, expenseAmount, expenseCategory)"
-    >
-      Confirm Edits
-    </button>
+    <div class="d-flex gap-2">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="onUpdateExpense(expenseName, expenseAmount, expenseCategory)"
+      >
+        Confirm Edits
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
   </form>
 </div>
+
+<ng-template #noExpense>
+  <div class="container py-4">
+    <p>Loading expense data or expense not found.</p>
+  </div>
+</ng-template>

@@ -18,15 +18,25 @@ export class AddExpense {
   categories = this.expenseService.categories;
   badgeColors = BOOTSTRAP_BADGE_COLORS;
 
-  onCreateExpense(expName: HTMLInputElement, expAmt: HTMLInputElement, expCat: HTMLSelectElement) {
+  onCreateExpense(
+    expName: HTMLInputElement,
+    expAmt: HTMLInputElement,
+    expType: HTMLSelectElement,
+    expCat: HTMLSelectElement,
+  ) {
     const name = expName.value;
-    const amt = parseFloat(expAmt.value);
+    let amt = parseFloat(expAmt.value);
+    const type = expType.value;
     const cat = expCat.value;
 
     if (name && amt > 0 && cat) {
+      if (type === 'Income' && amt > 0) {
+        amt = -amt;
+      }
       this.expenseService.addExpense(name, amt, cat);
       expName.value = '';
       expAmt.value = '';
+      expType.value = 'Expense';
       expCat.value = '';
     }
   }

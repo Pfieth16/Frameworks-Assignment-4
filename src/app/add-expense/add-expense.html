@@ -16,6 +16,13 @@
       <input #expenseAmount type="number" class="form-control" id="inputAmt" min="0" step="0.01" />
     </div>
     <div class="mb-3">
+      <label for="inputType">Transaction Type</label>
+      <select #expenseType class="form-select" id="inputType">
+        <option value="Expense">Expense</option>
+        <option value="Income">Income</option>
+      </select>
+    </div>
+    <div class="mb-3">
       <label for="inputCategory">Expense Category</label>
       <select #expenseCategory class="form-select" id="inputCategory">
         <option value="">Select a category</option>
@@ -23,8 +30,9 @@
       </select>
     </div>
     <button
+      type="button"
       class="btn btn-primary"
-      (click)="onCreateExpense(expenseName, expenseAmount, expenseCategory)"
+      (click)="onCreateExpense(expenseName, expenseAmount, expenseType, expenseCategory)"
     >
       Add Expense
     </button>
@@ -50,7 +58,11 @@
         <option *ngFor="let color of badgeColors" [value]="color">{{ color }}</option>
       </select>
     </div>
-    <button class="btn btn-secondary" (click)="onAddCategory(categoryName, categoryColor)">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="onAddCategory(categoryName, categoryColor)"
+    >
       Add Category
     </button>
   </form>
