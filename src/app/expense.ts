@@ -1,9 +1,23 @@
 export interface Expense {
-    id: string
-    title: string
-    amount: number
-    category: ExpenseCategory
+  id: string;
+  title: string;
+  amount: number;
+  category: string;
 }
 
-export type ExpenseCategory = "Work" | "Personal" | "Grocery" | "Utilities" | "Shopping" | "Travel" | "Food";
+export interface Category {
+  id: string;
+  name: string;
+  color: string;
+}
 
+export const BOOTSTRAP_BADGE_COLORS = [
+  'primary',
+  'secondary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'light',
+  'dark',
+];

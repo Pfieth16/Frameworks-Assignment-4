@@ -1,28 +1,66 @@
 <div class="container">
-    <form action="">
-        <div class="mb-3">
-            <label for="inputName">Expense Title</label>
-            <!-- <input #expenseName type="text" class="form-control" id="inputName" placeholder="Enter the name of the expense" [(ngModel)] = expense_title> -->
-            <input #expenseName type="text" class="form-control" id="inputName" placeholder="Enter the name of the expense">
-        </div>
-        <div class="mb-3">
-            <label for="inputAmt">Expense Amount</label>
-            <!-- <input #expenseAmount type="number" class="form-control" id="inputAmt" [(ngModel)] = expense_amount> -->
-            <input #expenseAmount type="number" class="form-control" id="inputAmt">
-        </div>
-        <div class="mb-3">
-            <label for="inputCategory">Expense Category</label>
-            <!-- <select #expenseCategory class="form-select" id="inputCategory" [(ngModel)] = expense_category> -->
-            <select #expenseCategory class="form-select" id="inputCategory">
-                <option value="Work">Work</option>
-                <option value="Personal">Personal</option>
-                <option value="Grocery">Grocery</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Travel">Travel</option>
-                <option value="Food">Food</option>
-            </select>
-        </div>
-        <button class="btn btn-primary" (click)="onCreateExpense(expenseName, expenseAmount, expenseCategory)">Add Expense</button>
-    </form>
+  <h2>Add Expense</h2>
+  <form action="">
+    <div class="mb-3">
+      <label for="inputName">Expense Title</label>
+      <input
+        #expenseName
+        type="text"
+        class="form-control"
+        id="inputName"
+        placeholder="Enter the name of the expense"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="inputAmt">Expense Amount</label>
+      <input #expenseAmount type="number" class="form-control" id="inputAmt" min="0" step="0.01" />
+    </div>
+    <div class="mb-3">
+      <label for="inputCategory">Expense Category</label>
+      <select #expenseCategory class="form-select" id="inputCategory">
+        <option value="">Select a category</option>
+        <option *ngFor="let cat of categories()" [value]="cat.name">{{ cat.name }}</option>
+      </select>
+    </div>
+    <button
+      class="btn btn-primary"
+      (click)="onCreateExpense(expenseName, expenseAmount, expenseCategory)"
+    >
+      Add Expense
+    </button>
+  </form>
+
+  <hr />
+
+  <h3>Add New Category</h3>
+  <form action="">
+    <div class="mb-3">
+      <label for="catName">Category Name</label>
+      <input
+        #categoryName
+        type="text"
+        class="form-control"
+        id="catName"
+        placeholder="Enter category name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="catColor">Badge Color</label>
+      <select #categoryColor class="form-select" id="catColor">
+        <option *ngFor="let color of badgeColors" [value]="color">{{ color }}</option>
+      </select>
+    </div>
+    <button class="btn btn-secondary" (click)="onAddCategory(categoryName, categoryColor)">
+      Add Category
+    </button>
+  </form>
+
+  <hr />
+
+  <h4>Existing Categories</h4>
+  <div class="mb-3">
+    <span *ngFor="let cat of categories()" class="badge me-2" [ngClass]="'bg-' + cat.color">{{
+      cat.name
+    }}</span>
+  </div>
 </div>

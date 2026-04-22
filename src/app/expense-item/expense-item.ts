@@ -18,24 +18,8 @@ export class ExpenseItem {
   }
 
   badgeClass() {
-    const category = this.expense().category;
-    if (!category) return 'badge bg-dark';
-
-    switch (category) {
-      case 'Food':
-        return 'badge bg-primary';
-      case 'Grocery':
-        return 'badge bg-secondary';
-      case 'Personal':
-        return 'badge bg-success';
-      case 'Shopping':
-        return 'badge bg-danger';
-      case 'Travel':
-        return 'badge bg-warning';
-      case 'Utilities':
-        return 'badge bg-info';
-      case 'Work':
-        return 'badge bg-light';
-    }
+    const categoryName = this.expense().category;
+    const cat = this.expenseService.categories().find((c) => c.name === categoryName);
+    return cat ? `badge bg-${cat.color}` : 'badge bg-dark';
   }
 }
