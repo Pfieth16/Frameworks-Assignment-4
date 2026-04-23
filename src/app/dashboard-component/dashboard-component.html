@@ -4,13 +4,58 @@
     <div class="card border-primary mb-3 col" style="max-width: 40rem">
       <div class="card-body text-primary">
         <h5 class="card-title">Total Expenses</h5>
-        <h3 class="card-text">${{ expenseService.sum(expenseService.expense_list()) }}</h3>
+        <h3 class="card-text">${{ expenseService.total_expenses() }}</h3>
       </div>
     </div>
     <div class="card border-primary mb-3 col" style="max-width: 40rem">
       <div class="card-body text-primary">
         <h5 class="card-title">Expense Count</h5>
         <h3 class="card-text">{{ expenseService.num_expenses() }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="card mb-3 col-12"
+      [ngClass]="{
+        'border-warning': expenseService.budget_warning() === 'warning',
+        'border-danger': expenseService.budget_warning() === 'exceeded',
+        'border-primary': !expenseService.budget_warning(),
+      }"
+    >
+      <div
+        class="card-body"
+        [ngClass]="{
+          'text-warning': expenseService.budget_warning() === 'warning',
+          'text-danger': expenseService.budget_warning() === 'exceeded',
+          'text-primary': !expenseService.budget_warning(),
+        }"
+      >
+        <h5 class="card-title">Budget</h5>
+        <p *ngIf="!expenseService.budget()">No budget set</p>
+        <div *ngIf="expenseService.budget()">
+          <p>Budget: ${{ expenseService.budget()!.amount }}</p>
+          <p>Spent: ${{ expenseService.total_expenses() }}</p>
+          <p>Percentage: {{ expenseService.budget_percentage() | number: '1.0-1' }}%</p>
+          <div *ngIf="expenseService.budget_warning() === 'warning'" class="alert alert-warning">
+            Warning: You have spent over 70% of your budget!
+          </div>
+          <div *ngIf="expenseService.budget_warning() === 'exceeded'" class="alert alert-danger">
+            Alert: You have exceeded your budget!
+          </div>
+        </div>
+        <form (ngSubmit)="onSetBudget(budgetInput)" class="mt-3">
+          <div class="input-group">
+            <input
+              #budgetInput
+              type="number"
+              class="form-control"
+              placeholder="Set budget amount"
+              required
+            />
+            <button type="submit" class="btn btn-primary">Set Budget</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

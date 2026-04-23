@@ -1,12 +1,13 @@
 import { Component, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { BaseChartDirective } from 'ng2-charts';
 import { Expense } from '../expense';
 import { ExpenseService } from '../expense-service';
 
 @Component({
   selector: 'app-dashboard-component',
-  imports: [CommonModule, BaseChartDirective],
+  imports: [CommonModule, FormsModule, BaseChartDirective],
   templateUrl: './dashboard-component.html',
   styleUrl: './dashboard-component.css',
 })
@@ -49,8 +50,6 @@ export class DashboardComponent {
         incomeAmt += Math.abs(expense.amount);
       }
     });
-    // const expenseCount = expenses.filter((expense) => expense.amount >= 0).length;
-    // const incomeCount = expenses.filter((expense) => expense.amount < 0).length;
 
     return {
       labels: ['Expenses', 'Income'],
@@ -63,4 +62,12 @@ export class DashboardComponent {
       ],
     };
   });
+
+  onSetBudget(budgetInput: HTMLInputElement) {
+    const amount = parseFloat(budgetInput.value);
+    if (amount > 0) {
+      this.expenseService.setBudget(amount);
+      budgetInput.value = '';
+    }
+  }
 }
