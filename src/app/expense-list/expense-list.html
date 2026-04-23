@@ -1,6 +1,44 @@
 <div class="container">
-    <h1>Expenses</h1>
-    @for (expense of expenseService.expense_list(); track $index) {
-        <app-expense-item [expense]="expense"></app-expense-item>
-    }
+  <h1>Expenses</h1>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label for="categoryFilter" class="form-label">Filter by Category</label>
+      <select
+        id="categoryFilter"
+        class="form-select"
+        [(ngModel)]="categoryFilter"
+        (ngModelChange)="categoryFilter.set($event)"
+      >
+        <option value="">All Categories</option>
+        @for (category of expenseService.categories(); track category.id) {
+          <option [value]="category.name">{{ category.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="minAmount" class="form-label">Min Amount</label>
+      <input
+        id="minAmount"
+        type="number"
+        class="form-control"
+        [(ngModel)]="minAmountFilter"
+        (ngModelChange)="minAmountFilter.set($event ? +$event : null)"
+        placeholder="Min amount"
+      />
+    </div>
+    <div class="col-md-4">
+      <label for="maxAmount" class="form-label">Max Amount</label>
+      <input
+        id="maxAmount"
+        type="number"
+        class="form-control"
+        [(ngModel)]="maxAmountFilter"
+        (ngModelChange)="maxAmountFilter.set($event ? +$event : null)"
+        placeholder="Max amount"
+      />
+    </div>
+  </div>
+  @for (expense of filteredExpenses(); track $index) {
+    <app-expense-item [expense]="expense"></app-expense-item>
+  }
 </div>

@@ -44,9 +44,30 @@ export class AddExpense {
   onAddCategory(catName: HTMLInputElement, catColor: HTMLSelectElement) {
     const name = catName.value;
     const color = catColor.value;
+    var translated_color = '';
+    switch (color) {
+      case 'Dark Blue':
+        translated_color = 'primary';
+        break;
+      case 'Grey':
+        translated_color = 'secondary';
+        break;
+      case 'Green':
+        translated_color = 'success';
+        break;
+      case 'Red':
+        translated_color = 'danger';
+        break;
+      case 'Yellow':
+        translated_color = 'warning';
+        break;
+      case 'Light Blue':
+        translated_color = 'info';
+        break;
+    }
 
     if (name && color) {
-      this.expenseService.addCategory(name, color);
+      this.expenseService.addCategory(name, translated_color);
       catName.value = '';
       catColor.value = 'primary';
     }

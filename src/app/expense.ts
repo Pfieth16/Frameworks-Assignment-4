@@ -19,13 +19,14 @@ export interface Budget {
   userId: string;
 }
 
-export const BOOTSTRAP_BADGE_COLORS = [
-  'primary',
-  'secondary',
-  'success',
-  'danger',
-  'warning',
-  'info',
-  'light',
-  'dark',
-];
+// export const BOOTSTRAP_BADGE_COLORS = [
+//   'primary',
+//   'secondary',
+//   'success',
+//   'danger',
+//   'warning',
+//   'info',
+//   'light',
+//   'dark',
+// ];
+export const BOOTSTRAP_BADGE_COLORS = ['Dark Blue', 'Grey', 'Green', 'Red', 'Yellow', 'Light Blue'];
